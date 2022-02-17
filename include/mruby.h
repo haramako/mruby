@@ -253,6 +253,8 @@ struct mrb_jmpbuf;
 
 typedef void (*mrb_atexit_func)(struct mrb_state*);
 
+typedef void (*mrb_abort_func)(struct mrb_state*, mrb_value exc);
+
 typedef struct mrb_state {
   struct mrb_jmpbuf *jmp;
 
@@ -326,6 +328,8 @@ typedef struct mrb_state {
   mrb_atexit_func *atexit_stack;
 #endif
   uint16_t atexit_stack_len;
+
+  mrb_abort_func abort;
 } mrb_state;
 
 /**

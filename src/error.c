@@ -196,6 +196,9 @@ exc_throw(mrb_state *mrb, mrb_value exc)
 {
   if (!mrb->jmp) {
     mrb_p(mrb, exc);
+    if( mrb->abort ){
+      mrb->abort(mrb, exc);
+    }
     abort();
   }
   MRB_THROW(mrb->jmp);
